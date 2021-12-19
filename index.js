@@ -525,8 +525,20 @@ module.exports = {
   addFriend: (token, uid) => {
     return request('/user/friend/add', true, 'post', { token, uid })
   },
+  deleteFriend: (token, uid) => {
+    return request('/user/friend/delete', true, 'post', { token, uid })
+  },
   friendUserDetail: (token, uid) => {
     return request('/user/friend/detail', true, 'get', { token, uid })
+  },
+  userImList: data => {
+    return request('/userIm/list', true, 'post', data)
+  },
+  userImSendmessage: (token, uid, content) => {
+    return request('/userIm/sendmessage', true, 'post', { token, uid, content })
+  },
+  userImEmpty: (token, uid) => {
+    return request('/userIm/empty', true, 'post', { token, uid })
   },
   videoDetail: (videoId) => {
     return request('/media/video/detail', true, 'get', {
@@ -879,6 +891,9 @@ module.exports = {
   },
   depositBackApply: (token, id) => {
     return request('/deposit/back/apply', true, 'post', { token, id })
+  },
+  fetchShopsCities: () => {
+    return request('/shop/subshop/cities', true, 'get')
   },
   fetchShops: (data) => {
     return request('/shop/subshop/list', true, 'post', data)
