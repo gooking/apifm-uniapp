@@ -1,5 +1,6 @@
 var API_BASE_URL = 'https://api.it120.cc'
 var subDomain = '-'
+var merchantId = '0'
 const request = function request(url, needSubDomain, method, data) {
   var _url = API_BASE_URL + (needSubDomain ? '/' + subDomain : '') + url;
   if (url.indexOf("http") == 0 ) {
@@ -323,6 +324,11 @@ module.exports = {
   goodsLimitations: (goodsId, priceId = '') => {
     return request('/shop/goods/limitation', true, 'get', {
       goodsId, priceId
+    })
+  },
+  goodsLimitationsV2: (goodsId, propertyChildIds = '') => {
+    return request('/shop/goods/limitation', true, 'get', {
+      goodsId, propertyChildIds
     })
   },
   goodsAddition: (goodsId) => {
