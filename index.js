@@ -1303,6 +1303,12 @@ module.exports = {
   siteStatistics: () => {
     return request('/site/statistics', true, 'get')
   },
+  authorization: (data) => {
+    return request('/user/wxmp/auth', true, 'post', data)
+  },
+  jssdkSign: (url) => {
+    return request('/wx/jssdk/sign', true, 'post', { url })
+  },
   orderStatistics: (token) => {
     return request('/order/statistics', true, 'get', {
       token
