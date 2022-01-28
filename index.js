@@ -273,6 +273,9 @@ module.exports = {
       email, pwd, code
     })
   },
+  wxmpAuth: data => {
+    return request('/user/wxmp/auth', true, 'post', data)
+  },
   register_complex: (data) => {
     return request('/user/wxapp/register/complex', true, 'post', data)
   },
@@ -1766,5 +1769,9 @@ module.exports = {
   },
   bottleMsgSalvage: token => {
     return request('/bottleMsg/salvage', true, 'get', { token })
+  },
+  // 京东权益池
+  joycityPointsGoodsDetail: (goodsId) => {
+    return request('/joycityPoints/goods/detail', true, 'get', { goodsId })
   },
 }
