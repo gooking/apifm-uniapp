@@ -181,6 +181,12 @@ module.exports = {
   wxpayQH5: data => {
     return request('/pay/wx/qh5', true, 'post', data);
   },
+  wxpayH5: (data) => {
+    return request('/pay/wx/h5', true, 'post', data)
+  },
+  wxpayJsapi: (data) => {
+    return request('/pay/wx/jsapi', true, 'post', data)
+  },
   wxpayFOMO: (data) => {
     return request('/pay/fomo/wxapp', true, 'post', data)
   },
