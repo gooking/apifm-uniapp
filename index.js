@@ -1782,8 +1782,23 @@ module.exports = {
   bottleMsgSalvage: token => {
     return request('/bottleMsg/salvage', true, 'get', { token })
   },
+  userInvoiceInfo: token => {
+    return request('/userInvoice/info', true, 'get', { token })
+  },
+  userInvoiceUnbind: token => {
+    return request('/userInvoice/unbind', true, 'post', { token })
+  },
+  userInvoiceBind: data => {
+    return request('/userInvoice/bind', true, 'post', data)
+  },
   // 京东权益池
   joycityPointsGoodsDetail: (goodsId) => {
     return request('/joycityPoints/goods/detail', true, 'get', { goodsId })
+  },
+  joycityPointsCanApplyAfterSale: data => {
+    return request('/joycityPoints/orders/canApplyAfterSale', true, 'get', data)
+  },
+  joycityPointsSearchAfsApplyReasonList: data => {
+    return request('/joycityPoints/orders/searchAfsApplyReasonList', true, 'get', data)
   },
 }
