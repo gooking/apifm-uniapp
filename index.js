@@ -312,6 +312,9 @@ module.exports = {
   goodsCategory: () => {
     return request('/shop/goods/category/all', true, 'get')
   },
+  goodsCategoryV2: (shopId = '') => {
+    return request('/shop/goods/category/all', true, 'get', { shopId })
+  },
   goodsCategoryDetail: (id) => {
     return request('/shop/goods/category/info', true, 'get', { id })
   },
@@ -767,6 +770,11 @@ module.exports = {
       page, pageSize
     })
   },
+  fxSaleroomRankTotalTeam: (page, pageSize) => {
+    return request('/saleDistribution/sale-room-rank/team/total', true, 'get', {
+      page, pageSize
+    })
+  },
   fxSaleroomRankDaily: (page, pageSize, day) => {
     return request('/saleDistribution/sale-room-rank/daily', true, 'get', {
       page, pageSize, day
@@ -1185,6 +1193,9 @@ module.exports = {
   },  
   goodsDynamic: (type) => {
     return request('/site/goods/dynamic', true, 'get', { type })
+  },
+  goodsDynamicV2: data => {
+    return request('/site/goods/dynamic', true, 'get', data)
   },
   usersDynamic: (type) => {
     return request('/site/user/dynamic', true, 'get', { type })
@@ -1800,5 +1811,8 @@ module.exports = {
   },
   joycityPointsSearchAfsApplyReasonList: data => {
     return request('/joycityPoints/orders/searchAfsApplyReasonList', true, 'get', data)
+  },
+  joycityPointsSearchAfsOrderDetail: data => {
+    return request('/joycityPoints/orders/searchAfsOrderDetail', true, 'get', data)
   },
 }
