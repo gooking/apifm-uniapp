@@ -1,7 +1,7 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.53.0",
-  "description": "增加支付宝APP支付",
+  "version": "3.54.0",
+  "description": "增加分享优惠券功能",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
