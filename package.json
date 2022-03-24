@@ -1,7 +1,7 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.54.0",
-  "description": "增加分享优惠券功能",
+  "version": "3.55.0",
+  "description": "增加QQ小程序授权登录接口",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

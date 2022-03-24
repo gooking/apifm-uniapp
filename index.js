@@ -226,6 +226,9 @@ module.exports = {
   alipay: (data) => {
     return request('/pay/alipay/semiAutomatic/payurl', true, 'post', data)
   },
+  alipayMP: (data) => {
+    return request('/pay/alipay/gate/mp', true, 'post', data)
+  },
   alipayAPP: (data) => {
     return request('/pay/alipay/gate/app', true, 'post', data)
   },
@@ -293,6 +296,9 @@ module.exports = {
   },
   registerQ: (data) => {
     return request('/user/q/register', true, 'post', data)
+  },
+  qqAuthorize: (data) => {
+    return request('/user/q/authorize', true, 'post', data)
   },
   register_simple: (data) => {
     return request('/user/wxapp/register/simple', true, 'post', data)
@@ -1826,5 +1832,21 @@ module.exports = {
   },
   joycityPointsSearchAfsOrderDetail: data => {
     return request('/joycityPoints/orders/searchAfsOrderDetail', true, 'get', data)
+  },
+  // 支付宝小程序
+  aliappUserRegister: data => {
+    return request('/user/aliapp/register', true, 'post', data)
+  },
+  aliappUserLogin: data => {
+    return request('/user/aliapp/login', true, 'post', data)
+  },
+  aliappUserAuthorize: data => {
+    return request('/user/aliapp/authorize', true, 'post', data)
+  },
+  tempDataSet: (key, content) => {
+    return request('/tempData/set', true, 'post', { key, content })
+  },
+  tempDataGet: key => {
+    return request('/tempData/get', true, 'get', { key })
   },
 }
