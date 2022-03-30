@@ -1,7 +1,7 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.55.0",
-  "description": "增加QQ小程序授权登录接口",
+  "version": "3.55.2",
+  "description": "文章详情接口，增加可选token参数",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

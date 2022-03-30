@@ -619,6 +619,11 @@ module.exports = {
       token
     })
   },
+  userAliappInfo: (token) => {
+    return request('/user/aliappInfo', true, 'get', {
+      token
+    })
+  },
   userAmount: (token) => {
     return request('/user/amount', true, 'get', {
       token
@@ -897,8 +902,8 @@ module.exports = {
   cmsArticleDetail: (id) => {
     return request('/cms/news/detail', true, 'get', { id })
   },
-  cmsArticleDetailV2: (id) => {
-    return request('/cms/news/detail/v2', true, 'get', { id })
+  cmsArticleDetailV2: (id, token = '') => {
+    return request('/cms/news/detail/v2', true, 'get', { id, token })
   },
   cmsArticlePreNext: (id) => {
     return request('/cms/news/preNext', true, 'get', { id })
@@ -1848,5 +1853,8 @@ module.exports = {
   },
   tempDataGet: key => {
     return request('/tempData/get', true, 'get', { key })
+  },
+  commonDatetime: () => {
+    return request('/common/datetime', true, 'get')
   },
 }
