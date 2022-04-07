@@ -8,7 +8,13 @@ const request = function request(url, needSubDomain, method, data) {
   }
   var header = {
     'Content-Type': 'application/x-www-form-urlencoded'
-  };
+  }
+  if(_url.indexOf('https://user.api.it120.cc/') == 0) {
+	  const xtoken = uni.getStorageSync('xtoken')
+	  if(xtoken) {
+		  header['X-Token'] = xtoken
+	  }
+  }
   return new Promise(function (resolve, reject) {
     uni.request({
       url: _url,
@@ -431,8 +437,8 @@ module.exports = {
   goodsFavDeleteV2: data => {
     return request('/shop/goods/fav/delete', true, 'post', data)
   },
-  goodsSeckillGrab: (goodsId, seconds) => {
-    return request('/goods/seckill/grab', false, 'post', { goodsId, seconds })
+  goodsSeckillGrab: (token, goodsId, seconds) => {
+    return request('/goods/seckill/grab', true, 'post', { token, goodsId, seconds })
   },
   coupons: (data) => {
     return request('/discounts/coupons', true, 'get', data)
