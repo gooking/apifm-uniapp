@@ -306,6 +306,9 @@ module.exports = {
   qqAuthorize: (data) => {
     return request('/user/q/authorize', true, 'post', data)
   },
+  qqQrcode: (content) => {
+    return request('/user/q/qrcode', true, 'post', { content })
+  },
   register_simple: (data) => {
     return request('/user/wxapp/register/simple', true, 'post', data)
   },
@@ -544,11 +547,17 @@ module.exports = {
       goodsId
     });
   },
-  pingtuanOpen: (token, goodsId) => {
+  pingtuanOpen: (token, goodsId, extJsonStr = '') => {
     return request('/shop/goods/pingtuan/open', true, 'post', {
       goodsId,
-      token
+      token,
+      extJsonStr
     })
+  },
+  pingtuanTuanInfo: (tuanId) => {
+    return request('/shop/goods/pingtuan/tuanInfo', true, 'get', {
+      tuanId
+    });
   },
   pingtuanList: (data) => {
     return request('/shop/goods/pingtuan/list/v2', true, 'post', data)
@@ -1061,6 +1070,9 @@ module.exports = {
   },
   mapQQAddress: (location = '', coord_type = '5') => {
     return request('/common/map/qq/address', false, 'get', { location, coord_type })
+  },
+  mapQQAddressV2: (key, location, coord_type = '5') => {
+    return request('/common/map/qq/address', false, 'get', { key, location, coord_type })
   },
   mapQQSearch: (data) => {
     return request('/common/map/qq/search', false, 'post', data)
@@ -1853,6 +1865,9 @@ module.exports = {
   },
   aliappUserAuthorize: data => {
     return request('/user/aliapp/authorize', true, 'post', data)
+  },
+  aliappQrcode: content => {
+    return request('/user/aliapp/qrcode', true, 'post', { content })
   },
   tempDataSet: (key, content) => {
     return request('/tempData/set', true, 'post', { key, content })

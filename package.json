@@ -1,7 +1,7 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.55.3",
-  "description": "优化秒杀抢名额方法",
+  "version": "3.56.0",
+  "description": "增加经纬度读取地理信息",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
