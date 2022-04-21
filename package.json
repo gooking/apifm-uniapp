@@ -1,6 +1,6 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.57.0",
+  "version": "3.57.1",
   "description": "增加微信小程序获取手机号码接口",
   "main": "index.js",
   "scripts": {

@@ -265,8 +265,8 @@ module.exports = {
   loginWxaMobileV2: data => {
     return request('/user/wxapp/login/mobile', true, 'post', data)
   },
-  fetchWxaMobile: (code, encryptedData, iv) => {
-    return request('/user/wxapp/getMobile', true, 'post', { code, encryptedData, iv })
+  fetchWxaMobile: (code) => {
+    return request('/user/wxapp/getMobile', true, 'get', { code })
   },
   login_username: (data) => {
     return request('/user/username/login', true, 'post', data)
