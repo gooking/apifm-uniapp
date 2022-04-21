@@ -265,6 +265,9 @@ module.exports = {
   loginWxaMobileV2: data => {
     return request('/user/wxapp/login/mobile', true, 'post', data)
   },
+  fetchWxaMobile: (code, encryptedData, iv) => {
+    return request('/user/wxapp/getMobile', true, 'post', { code, encryptedData, iv })
+  },
   login_username: (data) => {
     return request('/user/username/login', true, 'post', data)
   },
@@ -1877,5 +1880,8 @@ module.exports = {
   },
   commonDatetime: () => {
     return request('/common/datetime', true, 'get')
+  },
+  userAttendantList: data => {
+    return request('/user/attendant/list', true, 'post', data)
   },
 }
