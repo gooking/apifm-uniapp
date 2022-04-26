@@ -989,6 +989,18 @@ module.exports = {
   pickPoints: (data) => {
     return request('/shop/subshop/pickPoints', true, 'post', data)
   },
+  shopFavPut: (token, shopId) => {
+    return request('/shop/fav/add', true, 'post', { token, shopId })
+  },
+  shopFavCheck: (token, shopId) => {
+    return request('/shop/fav/check', true, 'get', { token, shopId })
+  },
+  shopFavList: (data) => {
+    return request('/shop/fav/list', true, 'post', data)
+  },
+  shopFavDelete: (token, shopId) => {
+    return request('/shop/fav/delete', true, 'post', { token, shopId })
+  },
   addComment: (data) => {
     return request('/comment/add', true, 'post', data)
   },

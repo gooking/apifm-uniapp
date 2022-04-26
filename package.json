@@ -1,7 +1,7 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.57.1",
-  "description": "增加微信小程序获取手机号码接口",
+  "version": "3.58.0",
+  "description": "增加门店收藏功能",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
