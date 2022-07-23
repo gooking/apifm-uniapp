@@ -193,6 +193,12 @@ module.exports = {
   wxpayJsapi: (data) => {
     return request('/pay/wx/jsapi', true, 'post', data)
   },
+  wxpayQrcode: data => {
+    return request('/pay/wx/qrcode', true, 'post', data);
+  },
+  wxpayApp: data => {
+    return request('/pay/wx/app', true, 'post', data);
+  },
   wxpayFOMO: (data) => {
     return request('/pay/fomo/wxapp', true, 'post', data)
   },
@@ -419,6 +425,9 @@ module.exports = {
   goodsFavList: data => {
     return request('/shop/goods/fav/list', true, 'post', data)
   },
+  goodsFavListV2: data => {
+    return request('/shop/goods/fav/list/v2', true, 'post', data)
+  },
   goodsFavPut: (token, goodsId) => {
     return request('/shop/goods/fav/add', true, 'post', {
       token, goodsId
@@ -612,6 +621,11 @@ module.exports = {
       token, code, encryptedData, iv, pwd
     })
   },
+  bindMobileWxappV2: (token, code, pwd = '') => {
+    return request('/user/wxapp/bindMobile/v2', true, 'post', {
+      token, code, pwd
+    })
+  },
   bindMobileTta: (token, encryptedData, iv, pwd = '') => {
     return request('/user/tt/microapp/bindMobile', true, 'post', {
       token, encryptedData, iv, pwd
@@ -674,6 +688,9 @@ module.exports = {
   },
   orderReputation: (data) => {
     return request('/order/reputation', true, 'post', data)
+  },
+  orderReputationList: (data) => {
+    return request('/order/listReputation', true, 'post', data)
   },
   orderClose: (token, orderId) => {
     return request('/order/close', true, 'post', {
@@ -750,6 +767,11 @@ module.exports = {
   nextRegion: (pid) => {
     return request('/common/region/v2/child', false, 'get', {
       pid
+    })
+  },
+  regionInfo: (id) => {
+    return request('/common/region/v2/info', false, 'get', {
+      id
     })
   },
   cashLogs: (data) => {
@@ -941,6 +963,18 @@ module.exports = {
   cmsTags: () => {
     return request('/cms/tags/list', true, 'get', {  })
   },
+  cmsNewsSignUsers: (data) => {
+    return request('/newsSign/signUsers', true, 'post', data)
+  },
+  cmsNewsSignOnline: (data) => {
+    return request('/newsSign/signOnline', true, 'post', data)
+  },
+  cmsNewsSignOffline: (data) => {
+    return request('/newsSign/signOffline', true, 'post', data)
+  },
+  cmsNewsSignCheck: (token, newsId) => {
+    return request('/newsSign/check', true, 'get', { token, newsId })
+  },
   invoiceList: (data) => {
     return request('/invoice/list', true, 'post', data)
   },
@@ -989,6 +1023,9 @@ module.exports = {
   pickPoints: (data) => {
     return request('/shop/subshop/pickPoints', true, 'post', data)
   },
+  shopReputationList: (data) => {
+    return request('/shop/subshop/listReputation', true, 'post', data)
+  },
   shopFavPut: (token, shopId) => {
     return request('/shop/fav/add', true, 'post', { token, shopId })
   },
@@ -1000,6 +1037,18 @@ module.exports = {
   },
   shopFavDelete: (token, shopId) => {
     return request('/shop/fav/delete', true, 'post', { token, shopId })
+  },
+  userAttendantFavPut: (token, attendantId) => {
+    return request('/userAttendantFav/add', true, 'post', { token, attendantId })
+  },
+  userAttendantFavCheck: (token, attendantId) => {
+    return request('/userAttendantFav/check', true, 'get', { token, attendantId })
+  },
+  userAttendantFavList: (data) => {
+    return request('/userAttendantFav/list', true, 'post', data)
+  },
+  userAttendantFavDelete: (token, attendantId) => {
+    return request('/userAttendantFav/delete', true, 'post', { token, attendantId })
   },
   addComment: (data) => {
     return request('/comment/add', true, 'post', data)
@@ -1191,6 +1240,9 @@ module.exports = {
   voteLogs: (data) => {
     return request('/vote/vote/list', true, 'post', data)
   },
+  myInviteVoteJoinList: (data) => {
+    return request('/vote/myInviteLoinList', true, 'post', data)
+  },
   yuyueItemPublish: (data) => {
     return request('/yuyue/publish', true, 'post', data)
   },
@@ -1362,6 +1414,9 @@ module.exports = {
   peisongEndService: (data) => {
     return request('/peisong/order/end-service', true, 'post', data)
   },
+  peisongEndServiceRemark: (token, id, remarkEnd) => {
+    return request('/peisong/order/end-service/remarkEnd', true, 'post', { token, id, remarkEnd })
+  },
   peisongOrderAllocation: (token, id, uid) => {
     return request('/peisong/order/allocation', true, 'post', {
       token, id, uid
@@ -1489,6 +1544,9 @@ module.exports = {
   },
   wxappServiceBindMobile: data => {
     return request('/user/wxappService/bindMobile', true, 'post', data)
+  },
+  wxappServiceBindMobileV2: data => {
+    return request('/user/wxappService/bindMobile/v2', true, 'post', data)
   },
   wxappServiceBindOpenid: data => {
     return request('/user/wxappService/bindOpenid', true, 'post', data)
@@ -1881,6 +1939,9 @@ module.exports = {
   aliappUserAuthorize: data => {
     return request('/user/aliapp/authorize', true, 'post', data)
   },
+  aliappWebUserAuthorize: data => {
+    return request('/user/aliappweb/authorize', true, 'post', data)
+  },
   aliappQrcode: content => {
     return request('/user/aliapp/qrcode', true, 'post', { content })
   },
@@ -1893,7 +1954,22 @@ module.exports = {
   commonDatetime: () => {
     return request('/common/datetime', true, 'get')
   },
+  commonDays: (startDay = '', days = '') => {
+    return request('/common/days', false, 'get', { startDay, days })
+  },
   userAttendantList: data => {
     return request('/user/attendant/list', true, 'post', data)
+  },
+  userAttendantDetail: (id, token = '') => {
+    return request('/user/attendant/detail', true, 'get', { id, token })
+  },
+  userAttendantGoods: (id) => {
+    return request('/user/attendant/goods', true, 'get', { id })
+  },
+  shopCategory: () => {
+    return request('/shopCategory/all', true, 'get')
+  },
+  shopCategoryDetail: (id) => {
+    return request('/shopCategory/info', true, 'get', { id })
   },
 }
