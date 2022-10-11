@@ -1056,6 +1056,12 @@ module.exports = {
   commentList: (data) => {
     return request('/comment/list', true, 'post', data)
   },
+  commentListV2: (data) => {
+    return request('/comment/list/v2', true, 'post', data)
+  },
+  delComment: (data) => {
+    return request('/comment/del', true, 'post', data)
+  },
   modifyUserInfo: (data) => {
     return request('/user/modify', true, 'post', data)
   },
@@ -1171,6 +1177,9 @@ module.exports = {
   loginout: (token) => {
     return request('/user/loginout', true, 'get', { token })
   },
+  userDelete: (token) => {
+    return request('/user/delete', true, 'post', { token })
+  },
   userLevelList: (data) => {
     return request('/user/level/list', true, 'post', data)
   },
@@ -1227,6 +1236,9 @@ module.exports = {
       remark
     })
   },
+  voteCategory: (data) => {
+    return request('/vote/vote/category', true, 'post', data)
+  },
   myVote: (token, voteId) => {
     return request('/vote/vote/info', true, 'get', {
       token, voteId,
@@ -1239,6 +1251,12 @@ module.exports = {
   },
   voteLogs: (data) => {
     return request('/vote/vote/list', true, 'post', data)
+  },
+  voteGroups: (data) => {
+    return request('/vote/vote/groups', true, 'post', data)
+  },
+  voteGroupsDetail: (data) => {
+    return request('/vote/vote/groups/detail', true, 'get', data)
   },
   myInviteVoteJoinList: (data) => {
     return request('/vote/myInviteLoinList', true, 'post', data)
@@ -1266,6 +1284,11 @@ module.exports = {
   yuyueJoinUpdate: (token, joinId, extJsonStr) => {
     return request('/yuyue/join/update', true, 'post', {
       token, joinId, extJsonStr
+    })
+  },
+  yuyueJoinDelete: (token, joinId) => {
+    return request('/yuyue/delJoin', true, 'post', {
+      token, id: joinId
     })
   },
   yuyueMyJoinInfo: (token, joinId) => {
@@ -1877,7 +1900,7 @@ module.exports = {
   momentsPublish: data => {
     return request('/user/moments/publish', true, 'post', data)
   },
-  momentsList: data => {
+  userMomentsList: data => {
     return request('/user/moments/list', true, 'get', data)
   },
   momentsDetail: (token, momentsId) => {
