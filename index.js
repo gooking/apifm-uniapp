@@ -118,6 +118,12 @@ module.exports = {
       iv
     })
   },
+  scoreTaskList: token => {
+    return request('/score/taskList', true, 'get', { token })
+  },
+  scoreTaskSuccess: (token, type) => {
+    return request('/score/taskSuccess', true, 'post', { token, type })
+  },
   kanjiaSet: (goodsId) => {
     return request('/shop/goods/kanjia/set/v2', true, 'get', { goodsId })
   },
@@ -271,6 +277,9 @@ module.exports = {
   loginWxaMobileV2: data => {
     return request('/user/wxapp/login/mobile', true, 'post', data)
   },
+  loginWxaMobileV3: data => {
+    return request('/user/wxapp/login/mobile/v2', true, 'post', data)
+  },
   fetchWxaMobile: (code) => {
     return request('/user/wxapp/getMobile', true, 'get', { code })
   },
@@ -373,6 +382,16 @@ module.exports = {
   goodsAddition: (goodsId) => {
     return request('/shop/goods/goodsAddition', true, 'get', {
       goodsId
+    })
+  },
+  goodsVideoEpisodesList: (goodsId, token = '') => {
+    return request('/goodsVideoEpisodes/list', true, 'get', {
+      goodsId, token
+    })
+  },
+  goodsVideoEpisodesBuy: (goodsId, number, token) => {
+    return request('/goodsVideoEpisodes/buy', true, 'post', {
+      goodsId, number, token
     })
   },
   goodsStatistics: data => {
@@ -906,6 +925,9 @@ module.exports = {
   },
   uploadFileList: (path = '') => {
     return request('/dfs/upload/list', true, 'post', { path })
+  },
+  galleryList: data => {
+    return request('/dfs/gallery', true, 'post', data)
   },
   refundApply: (data) => {
     return request('/order/refundApply/apply', true, 'post', data)
@@ -1613,6 +1635,9 @@ module.exports = {
   goodsVisitLogDelete: data => {
     return request('/goods/visitLog/delete', true, 'post', data)
   },
+  goodsVisitLogClear: token => {
+    return request('/goods/visitLog/clear', true, 'post', { token })
+  },
   channelDataPush: (key, content) => {
     return request('/channelData/push', true, 'post', { key, content })
   },
@@ -1989,10 +2014,104 @@ module.exports = {
   userAttendantGoods: (id) => {
     return request('/user/attendant/goods', true, 'get', { id })
   },
+  userAttendantGoodsSet: (token, ids) => {
+    return request('/user/attendant/goodsSet', true, 'post', { token, ids })
+  },
+  userAttendantBindShop: (token, shopId) => {
+    return request('/user/attendant/bindShop', true, 'post', { shopId, token })
+  },
+  userAttendantUnBindShop: (token) => {
+    return request('/user/attendant/unbindShop', true, 'post', { token })
+  },
+  userAttendantChangeStatus: data => {
+    return request('/user/attendant/changeStatus', true, 'post', data)
+  },
+  userAttendantDaysTimesAttendant: (goodsId, day) => {
+    return request('/user/attendant/daysTimesAttendant', true, 'get', { goodsId, day })
+  },
+  userAttendantDaysTimesAttendantSetQuery: (token, day) => {
+    return request('/user/attendant/daysTimesAttendant/set/query', true, 'get', { token, day })
+  },
+  userAttendantDaysTimesAttendantSet: data => {
+    return request('/user/attendant/daysTimesAttendant/set', true, 'post', data)
+  },
+  userAttendantListReputation: data => {
+    return request('/user/attendant/listReputation', true, 'post', data)
+  },
+  userAttendantShowPics: id => {
+    return request('/user/attendant/showPics', true, 'get', { id })
+  },
+  userAttendantShowPicsAdd: (token, url) => {
+    return request('/user/attendant/showPicsAdd', true, 'post', { token, url })
+  },
+  userAttendantUpdate: data => {
+    return request('/user/attendant/update', true, 'post', data)
+  },
   shopCategory: () => {
     return request('/shopCategory/all', true, 'get')
   },
   shopCategoryDetail: (id) => {
     return request('/shopCategory/info', true, 'get', { id })
   },
+  getLocation: () => {
+		return new Promise(function(resolve, reject) {
+			uni.showLoading({
+				title: ''
+			})
+			uni.getLocation({
+			  type: "wgs84", //默认为 wgs84 返回 gps 坐标
+			  success: res => {
+			    console.log("定位获取:", res);
+			    let platform = uni.getSystemInfoSync().platform;
+			    if (platform == "ios") {
+			      //toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。
+				  resolve({
+					  long: res.longitude.toFixed(6),
+					  lat: res.latitude.toFixed(6)
+				  })
+			    } else {
+				  resolve({
+					  long: res.longitude,
+					  lat: res.latitude
+				  })
+			    }
+			  },
+			  fail: err => {
+			    console.error(err)
+				reject(err)
+			    if (
+			      err.errMsg ===
+			      "getLocation:fail 频繁调用会增加电量损耗，可考虑使用 wx.onLocationChange 监听地理位置变化"
+			    ) {
+			      uni.showToast({
+			        title: "请勿频繁定位",
+			        icon: "none",
+			      });
+			    } else if (err.errMsg === "getLocation:fail auth deny") {
+			      // 未授权
+			      uni.showToast({
+			        title: "无法定位，请重新获取位置信息",
+			        icon: "none",
+			      });
+			    } else if (
+			      err.errMsg ===
+			      "getLocation:fail:ERROR_NOCELL&WIFI_LOCATIONSWITCHOFF"
+			    ) {
+			      uni.showModal({
+			        content: "请开启手机定位服务",
+			        showCancel: false,
+			      });
+			    } else {
+			      uni.showModal({
+			        content: "无法获取手机定位 \n 请先确认定位服务是否已开启",
+			        showCancel: false,
+			      });
+			    }
+			  },
+			  complete: () => {
+			    uni.hideLoading()
+			  },
+			});
+		});
+	}
 }
