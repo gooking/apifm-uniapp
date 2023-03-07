@@ -202,6 +202,9 @@ module.exports = {
   wxpayQrcode: data => {
     return request('/pay/wx/qrcode', true, 'post', data);
   },
+  wxpayCode: data => {
+    return request('/pay/wx/paymentCode', true, 'post', data)
+  },
   wxpayApp: data => {
     return request('/pay/wx/app', true, 'post', data);
   },
@@ -249,6 +252,12 @@ module.exports = {
   },
   alipayAPP: (data) => {
     return request('/pay/alipay/gate/app', true, 'post', data)
+  },
+  alipayQrcode: (data) => {
+    return request('/pay/alipay/gate/qrcode', true, 'post', data)
+  },
+  alipayQrcode2: (data) => {
+    return request('/pay/alipay/gate/paymentCode', true, 'post', data)
   },
   login_wx: (code) => {
     return request('/user/wxapp/login', true, 'post', {
@@ -793,6 +802,9 @@ module.exports = {
       id
     })
   },
+  regionSearch: data => {
+    return request('/common/region/v2/search', false, 'post', data)
+  },
   cashLogs: (data) => {
     return request('/user/cashLog', true, 'post', data)
   },
@@ -1202,6 +1214,9 @@ module.exports = {
   userDelete: (token) => {
     return request('/user/delete', true, 'post', { token })
   },
+  dynamicUserCode: (token) => {
+    return request('/user/dynamicUserCode', true, 'get', { token })
+  },
   userLevelList: (data) => {
     return request('/user/level/list', true, 'post', data)
   },
@@ -1364,6 +1379,9 @@ module.exports = {
   },
   cmsArticleFavList: (data) => {
     return request('/cms/news/fav/list', true, 'post', data)
+  },
+  cmsArticleFavListV2: (data) => {
+    return request('/cms/news/fav/list/v2', true, 'post', data)
   },
   cmsArticleFavDeleteById: (token, id) => {
     return request('/cms/news/fav/delete', true, 'post', { token, id })
@@ -2004,6 +2022,61 @@ module.exports = {
   },
   commonDays: (startDay = '', days = '') => {
     return request('/common/days', false, 'get', { startDay, days })
+  },
+  // 企业应用 组织/成员/网盘
+  organizePrices: () => {
+    return request('/organizeInfo/prices', true, 'get')
+  },
+  organizeCreate: data => {
+    return request('/organizeInfo/create', true, 'post', data)
+  },
+  organizeUpgrade: data => {
+    return request('/organizeInfo/upgrade', true, 'post', data)
+  },
+  organizeModify: data => {
+    return request('/organizeInfo/modify', true, 'post', data)
+  },
+  organizeJoinKey: data => {
+    return request('/organizeInfo/joinKey', true, 'get', data)
+  },
+  organizeJoin: data => {
+    return request('/organizeInfo/join', true, 'post', data)
+  },
+  organizeGrantAdmin: data => {
+    return request('/organizeInfo/grantAdmin', true, 'post', data)
+  },
+  organizeKick: data => {
+    return request('/organizeInfo/kick', true, 'post', data)
+  },
+  organizeKickAllMembers: data => {
+    return request('/organizeInfo/kickAllMembers', true, 'post', data)
+  },
+  organizeKickSelf: data => {
+    return request('/organizeInfo/kickSelf', true, 'post', data)
+  },
+  organizeNick: data => {
+    return request('/organizeInfo/nick', true, 'post', data)
+  },
+  organizeDelete: data => {
+    return request('/organizeInfo/deleteOrganize', true, 'post', data)
+  },
+  organizeMyOrganizeInfo: data => {
+    return request('/organizeInfo/myOrganizeInfo', true, 'post', data)
+  },
+  organizeDetail: data => {
+    return request('/organizeInfo/organizeDetail', true, 'get', data)
+  },
+  organizeMembers: data => {
+    return request('/organizeInfo/members', true, 'post', data)
+  },
+  newsExtFieldList: (token, organizeId, newsId) => {
+    return request('/newsExtField/extFields', true, 'get', { token, organizeId, newsId })
+  },
+  newsExtFieldDynamic: (token, newsId) => {
+    return request('/newsExtField/dynamic', true, 'get', { token, newsId })
+  },
+  newsExtFieldSet: data => {
+    return request('/newsExtField/setField', true, 'post', data)
   },
   userAttendantList: data => {
     return request('/user/attendant/list', true, 'post', data)
