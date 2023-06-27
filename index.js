@@ -259,10 +259,19 @@ module.exports = {
   alipayQrcode2: (data) => {
     return request('/pay/alipay/gate/paymentCode', true, 'post', data)
   },
+  kasipayH5: (data) => {
+    return request('/pay/kasipay/h5', true, 'post', data)
+  },
   login_wx: (code) => {
     return request('/user/wxapp/login', true, 'post', {
       code,
       type: 2
+    })
+  },
+  loginWxV2: (code, appid) => {
+    return request('/user/wxapp/login/v2', true, 'post', {
+      code,
+      appid
     })
   },
   login_tt: (code) => {
@@ -377,6 +386,9 @@ module.exports = {
     return request('/shop/goods/detail', true, 'get', {
       id, token
     })
+  },
+  goodsDetailV2: data => {
+    return request('/shop/goods/detail', true, 'get', data)
   },
   goodsLimitations: (goodsId, priceId = '') => {
     return request('/shop/goods/limitation', true, 'get', {
@@ -1105,6 +1117,9 @@ module.exports = {
   modifyUserPassword: (token, pwdOld, pwdNew) => {
     return request('/user/modify/password', true, 'post', { token, pwdOld, pwdNew })
   },
+  modifyUserPasswordByUserName: (data) => {
+    return request('/user/username/modifyPassword', true, 'post', data)
+  },
   uniqueId: (type = '') => {
     return request('/uniqueId/get', true, 'get', { type })
   },
@@ -1252,6 +1267,14 @@ module.exports = {
       type: 2
     })
   },
+  bindOpenidV2: (token, code, appid) => {
+    return request('/user/wxapp/bindOpenid/v2', true, 'post', {
+      token, code, appid
+    })
+  },
+  bindWxmpOpenid: data => {
+    return request('/user/wxmp/bindOpenid', true, 'post', data)
+  },
   encryptedData: (code, encryptedData, iv) => {
     return request('/user/wxapp/decode/encryptedData', true, 'post', {
       code, encryptedData, iv
@@ -1355,7 +1378,7 @@ module.exports = {
     return request('/user/email/login', true, 'post', data)
   },
   bindEmail: (token, email, code, pwd = '') => {
-    return request('/user/email/bindUsername', true, 'post', {
+    return request('/user/email/bindEmail', true, 'post', {
       token, email, code, pwd
     })
   },  
@@ -1531,6 +1554,15 @@ module.exports = {
   },
   wxOpenAuthorization: (data) => {
     return request('/user/wxsns/authorization', true, 'post', data)
+  },
+  wxOpenRegister: (data) => {
+    return request('/user/wxsns/register', true, 'post', data)
+  },
+  wxOpenBindOpenid: (data) => {
+    return request('/user/wxsns/bindOpenid/v2', true, 'post', data)
+  },
+  wxOpenLogin: (data) => {
+    return request('/user/wxsns/login', true, 'post', data)
   },
   userAttentioncheck: (token, uid) => {
     return request('/user/attention/check', true, 'get', {
@@ -1835,7 +1867,7 @@ module.exports = {
   },
   // 会员卡
   cardList: data => {
-    return request('/card/list', true, 'post', data)
+    return request('/card/list', true, 'get', data)
   },
   cardInfo: id => {
     return request('/card/info', true, 'get', { id })
@@ -2119,6 +2151,9 @@ module.exports = {
   },
   userAttendantUpdate: data => {
     return request('/user/attendant/update', true, 'post', data)
+  },
+  userAttendantUpdatePosition: data => {
+    return request('/user/attendant/updatePosition', true, 'post', data)
   },
   shopCategory: () => {
     return request('/shopCategory/all', true, 'get')

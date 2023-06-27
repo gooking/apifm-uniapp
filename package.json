@@ -1,7 +1,7 @@
 {
   "name": "apifm-uniapp",
-  "version": "3.62.0",
-  "description": "增加组织相关功能",
+  "version": "3.64.0",
+  "description": "goodsDetailV2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
