@@ -363,6 +363,9 @@ module.exports = {
   banners: (data) => {
     return request('/banner/list', true, 'get', data)
   },
+  bannerTypes: () => {
+    return request('/banner/types', true, 'get')
+  },
   goodsCategory: () => {
     return request('/shop/goods/category/all', true, 'get')
   },
@@ -791,6 +794,9 @@ module.exports = {
   },
   withDrawLogs: (data) => {
     return request('/user/withDraw/list', true, 'post', data)
+  },
+  withDrawSetting: () => {
+    return request('/user/withDraw/setting', true, 'get')
   },
   province: () => {
     return request('/common/region/v2/province', false, 'get')
@@ -2224,5 +2230,8 @@ module.exports = {
 			  },
 			});
 		});
-	}
+	},
+  contactList: () => {
+    return request('/contact/list', true, 'get')
+  }
 }
