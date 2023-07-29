@@ -265,6 +265,9 @@ module.exports = {
   kasipayH5: (data) => {
     return request('/pay/kasipay/h5', true, 'post', data)
   },
+  hmpayJsapi: (data) => {
+    return request('/pay/sandpay/hmpay/jsapi', true, 'post', data)
+  },
   login_wx: (code) => {
     return request('/user/wxapp/login', true, 'post', {
       code,
@@ -332,6 +335,15 @@ module.exports = {
   },
   wxmpAuth: data => {
     return request('/user/wxmp/auth', true, 'post', data)
+  },
+  bindWxmpOpenid: data => {
+    return request('/user/wxmp/bindOpenid', true, 'post', data)
+  },
+  authorization: (data) => { // 这个方法弃用
+    return request('/user/wxmp/auth', true, 'post', data)
+  },
+  wxmpOpenid: code => {
+    return request('/user/wxmp/openid', true, 'get', { code })
   },
   register_complex: (data) => {
     return request('/user/wxapp/register/complex', true, 'post', data)
@@ -1296,9 +1308,6 @@ module.exports = {
       token, code, appid
     })
   },
-  bindWxmpOpenid: data => {
-    return request('/user/wxmp/bindOpenid', true, 'post', data)
-  },
   encryptedData: (code, encryptedData, iv) => {
     return request('/user/wxapp/decode/encryptedData', true, 'post', {
       code, encryptedData, iv
@@ -1537,9 +1546,6 @@ module.exports = {
   },
   siteStatistics: () => {
     return request('/site/statistics', true, 'get')
-  },
-  authorization: (data) => {
-    return request('/user/wxmp/auth', true, 'post', data)
   },
   jssdkSign: (url) => {
     return request('/wx/jssdk/sign', true, 'post', { url })
