@@ -2317,6 +2317,15 @@ module.exports = {
   keloopCourierTag: data => {
     return request('/order/keloop/courierTag', true, 'get', data)
   },
+  workingHoursMySubmitLogs: data => {
+    return request('/workingHours/mySubmitLogs', true, 'post', data)
+  },
+  workingHoursSubmit: data => {
+    return request('/workingHours/submit', true, 'post', data)
+  },
+  workingHoursBossReport: data => {
+    return request('/workingHours/bossReport', true, 'post', data)
+  },
   getLocation: () => {
 		return new Promise(function(resolve, reject) {
 			uni.showLoading({
