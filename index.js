@@ -780,6 +780,9 @@ module.exports = {
       token
     })
   },
+  orderPayV2: data => {
+    return request('/order/pay', true, 'post', data)
+  },
   jdjlOrderPay: (token, _token, couponId = '') => {
     return request('/jdjl/payOrder', true, 'post', {
       _token,
