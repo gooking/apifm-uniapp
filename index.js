@@ -1351,6 +1351,9 @@ module.exports = {
   loginout: (token) => {
     return request('/user/loginout', true, 'get', { token })
   },
+  userLogedList: (token) => {
+    return request('/user/logedUserList', true, 'get', { token })
+  },
   userDelete: (token) => {
     return request('/user/delete', true, 'post', { token })
   },
