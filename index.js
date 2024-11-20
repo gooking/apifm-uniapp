@@ -1,7 +1,7 @@
 var API_BASE_URL = 'https://api.it120.cc'
 var subDomain = '-'
 var merchantId = '0'
-const request = function request(url, needSubDomain, method, data) {
+var request = function request(url, needSubDomain, method, data) {
   var _url = API_BASE_URL + (needSubDomain ? '/' + subDomain : '') + url;
   if (url.indexOf("http") == 0 ) {
     _url = url
@@ -993,7 +993,7 @@ module.exports = {
     })
   },
   wxaQrcode: (data) => {
-    return request('/qrcode/wxa/unlimit', true, 'post', data)
+    return request('https://oss.apifm.com/' + subDomain + '/qrcode/wxa/unlimit', true, 'post', data)
   },
   ttaQrcode: (paramsJson, expireHours) => {
     return request('/user/tt/microapp/qrcode', true, 'post', {
@@ -1002,7 +1002,7 @@ module.exports = {
     })
   },
   commonQrcode: (data) => {
-    return request('/qrcode/content', true, 'post', data)
+    return request('https://oss.apifm.com/' + subDomain + '/qrcode/content', true, 'post', data)
   },
   uploadFile: (token, tempFilePath, expireHours = '') => {
     const uploadUrl = API_BASE_URL + '/' + subDomain + '/dfs/upload/file'
