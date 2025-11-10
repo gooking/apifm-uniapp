@@ -1804,6 +1804,12 @@ module.exports = {
       token, deductionScore
     })
   },
+  growthLogsV2: (data) => {
+    return request(COMMON_BASE_URL + subDomain + '/growthLog/logs', true, 'post', data)
+  },
+  exchangeScoreToGrowthV2: (data) => {
+    return request(COMMON_BASE_URL + subDomain + '/growthLog/exchange', true, 'post', data)
+  },
   wxaMpLiveRooms: () => {
     return request('/wx/live/rooms', true, 'get')
   },
@@ -2511,6 +2517,9 @@ module.exports = {
   },
   aliappQrcode: content => {
     return request('/user/aliapp/qrcode', true, 'post', { content })
+  },
+  aliappMiniappBindMobile: (data) => {
+    return request('/user/aliapp/bindMobile', true, 'post', data)
   },
   tempDataSet: (key, content) => {
     return request('/tempData/set', true, 'post', { key, content })
