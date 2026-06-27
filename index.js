@@ -114,7 +114,7 @@ module.exports = {
     })
   },
   scoreExchange: (token, number) => {
-    return request('/score/exchange', true, 'post', {
+    return request(COMMON_BASE_URL + subDomain + '/score/exchange', false, 'post', {
       number,
       token
     })
@@ -498,7 +498,7 @@ module.exports = {
     return request('/shop/goods/price', true, 'post', data)
   },
   goodsPriceDaily: (goodsId, priceId = '') => {
-    return request('/shop/goods/price/day', true, 'get', {
+    return request(COMMON_BASE_URL + subDomain + '/shop/goods/price/day', false, 'get', {
       goodsId, priceId
     })
   },
@@ -756,7 +756,7 @@ module.exports = {
     })
   },
   userDetail: (token) => {
-    return request('/user/detail', true, 'get', {
+    return request(COMMON_BASE_URL + subDomain + '/user/detail', false, 'get', {
       token
     })
   },
@@ -3019,22 +3019,22 @@ module.exports = {
     return request('/blindBoxFriends/balance', true, 'get', { token })
   },
   cpactivityInfoDetail: (id) => {
-    return request('/cpactivityInfo/detail', true, 'get', { id })
+    return request(COMMON_BASE_URL + subDomain + '/cpactivityInfo/detail', false, 'get', { id })
   },
   cpactivityUpdateUserInfo: (data) => {
-    return request('/cpactivityInfo/updateUserInfo', true, 'post', data)
+    return request(COMMON_BASE_URL + subDomain + '/cpactivityInfo/updateUserInfo', false, 'post', data)
   },
   cpactivityJoinDetail: (data) => {
-    return request('/cpactivityInfo/join', true, 'get', data)
+    return request(COMMON_BASE_URL + subDomain + '/cpactivityInfo/join', false, 'get', data)
   },
   cpactivityJoin: (data) => {
-    return request('/cpactivityInfo/join', true, 'post', data)
+    return request(COMMON_BASE_URL + subDomain + '/cpactivityInfo/join', false, 'post', data)
   },
   cpactivityJoinDynamics: (cpactivityId) => {
-    return request('/cpactivityInfo/joinDynamics', true, 'get', { cpactivityId })
+    return request(COMMON_BASE_URL + subDomain + '/cpactivityInfo/joinDynamics', false, 'get', { cpactivityId })
   },
   cpactivityPay: (data) => {
-    return request('/cpactivityInfo/pay', true, 'post', data)
+    return request(COMMON_BASE_URL + subDomain + '/cpactivityInfo/pay', false, 'post', data)
   },
   volcesArkCreateChatCompletion: (message) => {
     return request(COMMON_BASE_URL + subDomain + '/volcesArk/createChatCompletion', false, 'post', { message })
@@ -3156,8 +3156,8 @@ module.exports = {
   trainingDel: (data) => {
     return request(COMMON_BASE_URL + subDomain + '/training/del', false, 'post', data)
   },
-  trainingItems: () => {
-    return request(COMMON_BASE_URL + subDomain + '/training/items', false, 'get')
+  trainingItems: (data) => {
+    return request(COMMON_BASE_URL + subDomain + '/training/items', false, 'get', data)
   },
    trainingEnrollment: (data) => {
     return request(COMMON_BASE_URL + subDomain + '/training/enrollment', false, 'get', data)
@@ -3320,5 +3320,11 @@ module.exports = {
   },
   goodsBrandFavDelete: data => {
     return request(COMMON_BASE_URL + subDomain + '/shop/goods/brand/fav/delete', false, 'post', data)
+  },
+  trainingItemCategoryList: (data) => {
+    return request(COMMON_BASE_URL + subDomain + '/trainingItemCategory/list', false, 'get', data)
+  },
+  trainingItemCategoryDetail: (id) => {
+    return request(COMMON_BASE_URL + subDomain + '/trainingItemCategory/info', false, 'get', { id })
   },
 }
