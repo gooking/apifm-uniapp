@@ -2814,7 +2814,7 @@ module.exports = {
     return request('/listingInfo/joinList', true, 'post', data)
   },
   contactList: () => {
-    return request('/contact/list', true, 'get')
+    return request(COMMON_BASE_URL + subDomain + '/contact/list', false, 'get')
   },
   attendantAcceptOrder: data => {
     return request('/order/acceptOrder', true, 'post', data)
