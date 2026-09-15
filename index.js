@@ -1163,6 +1163,9 @@ module.exports = {
       uploadUrl = data.apiUrl
     }
     delete data.apiUrl
+    const tempFilePath = data.tempFilePath
+    delete data.tempFilePath
+    data.subDomain = subDomain
     return new Promise((resolve, reject) => {
       uni.uploadFile({
         url: uploadUrl,
